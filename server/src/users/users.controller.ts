@@ -1,14 +1,24 @@
-import {Controller, Post, Body, Get} from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { RolesService } from 'src/roles/roles.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly rolesService: RolesService,
+  ) {}
 
   @Post()
-  create(@Body() userDto: CreateUserDto) {
-    return this.usersService.createUser(userDto);
+  async create(@Body() userDto: CreateUserDto) {
+    const user = await this.usersService.createUser(userDto);
+    const role = await this.rolesService.getRoleByValue('USER');
+
+    await user.$set('roles', [role.id]);
+    user.roles = [role];
+
+    return user;
   }
 
   @Get()
