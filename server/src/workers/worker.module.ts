@@ -12,7 +12,7 @@ import { SeedWorker } from '../seeders/workers.seeder';
   controllers: [WorkerController],
   providers: [WorkerService],
   imports: [
-    SequelizeModule.forFeature([WorkerRole, Worker]),
+    SequelizeModule.forFeature([Worker, WorkerRole]),
     SeederModule.forFeature([SeedWorker]),
   ],
   exports: [WorkerService],

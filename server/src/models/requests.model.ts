@@ -3,7 +3,7 @@ import {
   Table,
   Column,
   DataType,
-  ForeignKey,
+  ForeignKey, BelongsTo,
 } from 'sequelize-typescript';
 import { RequestType } from './requests_type.model';
 import { Worker } from './workers.model';
@@ -40,7 +40,10 @@ export class Request extends Model {
     allowNull: false,
     unique: false,
   })
-  client_id: string;
+  client_id: number;
+
+  @BelongsTo(() => Client)
+  client: Client;
 
   @ForeignKey(() => RequestType)
   @Column({
@@ -48,7 +51,10 @@ export class Request extends Model {
     allowNull: false,
     unique: false,
   })
-  type_id: string;
+  type_id: number;
+
+  @BelongsTo(() => RequestType)
+  type: RequestType;
 
   @ForeignKey(() => Worker)
   @Column({
@@ -56,7 +62,10 @@ export class Request extends Model {
     allowNull: false,
     unique: false,
   })
-  worker_id: string;
+  worker_id: number;
+
+  @BelongsTo(() => Worker)
+  worker: Worker;
 
   @ForeignKey(() => RequestStatus)
   @Column({
@@ -65,6 +74,9 @@ export class Request extends Model {
     unique: false,
   })
   status_id: number;
+
+  @BelongsTo(() => RequestStatus)
+  status: RequestStatus;
 
   @Column({
     type: DataType.DATE,

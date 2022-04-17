@@ -7,6 +7,12 @@ import { ClientsModule } from './clients/clients.module';
 import { RequestsModule } from './requests/requests.module';
 
 import { SeederModule } from 'nestjs-sequelize-seeder';
+import {Client} from "./models/clients.model";
+import {Worker} from "./models/workers.model";
+import {WorkerRole} from "./models/workers_roles.model";
+import {Request} from "./models/requests.model";
+import {RequestType} from "./models/requests_type.model";
+import {RequestStatus} from "./models/requests_status.model";
 
 @Module({
   controllers: [],

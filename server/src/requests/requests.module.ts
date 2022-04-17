@@ -10,16 +10,16 @@ import { SeedRequestType } from '../seeders/request_type.seeder';
 import { SeedRequest } from '../seeders/requests.seeder';
 import { RequestsService } from './requests.service';
 import { RequestsController } from './requests.controller';
-import {Client} from "../models/clients.model";
+import { Client } from '../models/clients.model';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([
       RequestType,
       RequestStatus,
-      Request,
       Worker,
       Client,
+      Request,
     ]),
     SeederModule.forFeature([SeedRequestStatus]),
     SeederModule.forFeature([SeedRequestType]),

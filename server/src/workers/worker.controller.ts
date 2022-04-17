@@ -3,12 +3,12 @@ import { RolesService } from 'src/roles/roles.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { WorkerService } from './worker.service';
 
-@Controller('users')
+@Controller('workers')
 export class WorkerController {
-  // constructor(
-  //   private readonly usersService: WorkerService,
-  //   private readonly rolesService: RolesService,
-  // ) {}
+  constructor(
+    private readonly workerService: WorkerService,
+    // private readonly rolesService: RolesService,
+  ) {}
   //
   // @Post()
   // async create(@Body() userDto: CreateUserDto) {
@@ -21,8 +21,8 @@ export class WorkerController {
   //   return user;
   // }
   //
-  // @Get()
-  // getAll() {
-  //   return this.usersService.getAllUsers();
-  // }
+  @Get()
+  getAll() {
+    return this.workerService.getAllWorkers();
+  }
 }

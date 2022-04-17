@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Worker } from '../models/workers.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
-// import { Role } from '../roles/roles.model';
+import {WorkerRole} from "../models/workers_roles.model";
+
 
 @Injectable()
 export class WorkerService {
@@ -15,11 +16,11 @@ export class WorkerService {
     // return user;
   }
 
-  async getAllUsers() {
-    const users = await this.usersRepository.findAll<Worker>({
-      // include: [Role],
+  async getAllWorkers() {
+    const workers = await this.usersRepository.findAll<Worker>({
+      include: { all: true },
     });
-    return users;
+    return workers;
   }
 
   async getUserByEmail(email: string) {
