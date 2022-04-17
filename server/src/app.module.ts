@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { UsersModule } from './users/users.module';
+import { WorkerModule } from './workers/worker.module';
 import { ConfigModule } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
-import { AuthModule } from './auth/auth.module';
+import { ClientsModule } from './clients/clients.module';
+import { RequestsModule } from './requests/requests.module';
+
+import { SeederModule } from 'nestjs-sequelize-seeder';
 
 @Module({
   controllers: [],
@@ -18,10 +21,17 @@ import { AuthModule } from './auth/auth.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadModels: true,
+      synchronize: true,
     }),
-    UsersModule,
+
+    SeederModule.forRoot({
+      runOnlyIfTableIsEmpty: true,
+    }),
+
+    WorkerModule,
     RolesModule,
-    AuthModule,
+    ClientsModule,
+    RequestsModule,
   ],
 })
 export class AppModule {}
