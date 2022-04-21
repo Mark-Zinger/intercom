@@ -7,9 +7,7 @@ import {Observable, of, throwError} from "rxjs";
 })
 export class AuthService {
 
-  constructor(
-    private router: Router,
-  ) { }
+  constructor() { }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
