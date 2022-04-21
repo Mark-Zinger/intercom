@@ -11,8 +11,8 @@ export class RequestsService {
   ) {}
 
   async getTotalCost() {
-    const dateStart = '2022-04-01 00:00';
-    const dateEnd = '2022-04-13 00:00';
+    const dateStart = '2020-04-01 00:00';
+    const dateEnd = '2023-04-13 00:00';
 
     const result = await this.requestRepository.sequelize.query(
       `
