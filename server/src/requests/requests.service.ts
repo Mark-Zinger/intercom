@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Request } from '../models/requests.model';
-import {Client} from "../models/clients.model";
 import { QueryTypes } from 'sequelize';
 
 @Injectable()
@@ -36,9 +35,22 @@ export class RequestsService {
     return result;
   }
 
-  async findAll(): Promise<Request[]> {
-    return await this.requestRepository.findAll({
+  async findAll(params?: {
+    page: number;
+    pageSize: number;
+    // sortBy: string;
+    // sortOrder: string;
+  }) {
+    const {
+      page = 0,
+      pageSize = 10,
+      // sortBy = 'id',
+      // sortOrder = 'ASC',
+    } = params || {};
+    return await this.requestRepository.findAndCountAll({
       include: { all: true },
+      offset: page * pageSize,
+      limit: pageSize,
     });
   }
 }

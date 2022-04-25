@@ -15,7 +15,7 @@ export class SeedWorker implements OnSeederInit {
     return [
       {
         id: 1,
-        name: 'Бортник Маргорита',
+        name: 'Бортник Маргарита Алексеевна',
         email: 'nlsавhubilov@base.ru',
         phone: '8909233127018',
         hireDate: new Date(2000, 12, 26).toISOString(),

@@ -1,0 +1,23 @@
+.request-table {
+
+  &__status {
+    &_0 {
+      color: #ff0000;
+    }
+    &_1 {
+    color: #e0b22b;
+    }
+      &_2 {
+      color: #28a745;
+    }
+      &_3 {
+      color: #007bff;
+    }
+      &_4 {
+      color: #dc3545;
+    }
+      &_5 {
+      color: #6c757d;
+    }
+  }
+}
