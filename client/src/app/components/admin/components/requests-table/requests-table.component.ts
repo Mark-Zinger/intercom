@@ -16,7 +16,7 @@ export class RequestsTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'address', 'client_name', 'phone', 'type', 'worker_name', 'status'];
   data: Request[] = [];
 
-  resultsLength = 0;
+  resultsLength = 100;
   isLoadingResults = true;
   isRateLimitReached = false;
 
@@ -35,9 +35,12 @@ export class RequestsTableComponent implements OnInit {
       .pipe(
         startWith({}),
         switchMap(() => {
+
+          console.log( this.paginator.pageIndex );
           this.isLoadingResults = true;
           return this.dataService.getRequests(
             this.paginator.pageIndex,
+            this.paginator.pageSize,
           ).pipe(catchError(() => of(null)));
         }),
         map(data => {
@@ -49,10 +52,12 @@ export class RequestsTableComponent implements OnInit {
             return [];
           }
 
+          console.log({data});
+
           // Only refresh the result length if there is new data. In case of rate
           // limit errors, we do not want to reset the paginator to zero, as that
           // would prevent users from re-triggering requests.
-          this.resultsLength = data.count;
+          this.paginator.length = data.count;
           return data.rows;
         }),
       ).subscribe(data => (this.data = data));

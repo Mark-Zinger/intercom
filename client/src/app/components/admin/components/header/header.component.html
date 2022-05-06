@@ -1,10 +1,9 @@
 <mat-toolbar class="header">
   <span class="header__logo">INTERCOM</span>
   <nav mat-tab-nav-bar class="header__nav" color="accent">
-    <a mat-tab-link active="true" routerLink="clients">Клиенты</a>
-    <a mat-tab-link routerLink="requests">Заявки</a>
-    <a mat-tab-link routerLink="workers">Сотрудники</a>
-    <a mat-tab-link routerLink="statistic">Статистика</a>
+
+    <a *ngFor="let link of links"  mat-tab-link [active]="activeLink == link.url" routerLink="{{link.url}}">{{link.label}}</a>
+
   </nav>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>

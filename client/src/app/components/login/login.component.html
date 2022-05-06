@@ -20,8 +20,8 @@
             >
             <mat-error
               *ngIf="
-                this.loginForm.get('email')?.hasError('email') &&
-                !this.loginForm.get('email')?.hasError('required')"
+                loginForm.get('email')?.hasError('email') &&
+                !loginForm.get('email')?.hasError('required')"
             >
               Пожалуйста введите корректный email
             </mat-error>

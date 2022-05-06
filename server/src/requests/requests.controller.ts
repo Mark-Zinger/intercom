@@ -7,12 +7,12 @@ export class RequestsController {
 
   @Get('/?')
   async getAllRequests(
-    @Query('page') page: number,
-    @Query('pageSize') pageSize: number,
+    @Query('page') page: string,
+    @Query('limit') limit: string,
   ) {
     return await this.requestsService.findAll({
-      page: page,
-      pageSize: pageSize,
+      page: parseInt(page),
+      limit: parseInt(limit),
     });
   }
 

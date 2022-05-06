@@ -36,21 +36,24 @@ export class RequestsService {
   }
 
   async findAll(params?: {
-    page: number;
-    pageSize: number;
+    page?: number;
+    limit?: number;
     // sortBy: string;
     // sortOrder: string;
   }) {
     const {
       page = 0,
-      pageSize = 10,
+      limit = 10,
       // sortBy = 'id',
       // sortOrder = 'ASC',
     } = params || {};
+
+    console.log({ page, limit });
+
     return await this.requestRepository.findAndCountAll({
       include: { all: true },
-      offset: page * pageSize,
-      limit: pageSize,
+      offset: page * limit,
+      limit,
     });
   }
 }
